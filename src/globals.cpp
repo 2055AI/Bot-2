@@ -24,15 +24,16 @@
 // - Use numbers if it is in a port
 // - Use letters if it is a triport
 // ------------------------------------------------------------------------------------------------------
-int MOTOR_LB = 11;
-int MOTOR_LM = 13;
-int MOTOR_LF = 12;
+int MOTOR_LB = 9;
+int MOTOR_LM = 16;
+int MOTOR_LF = 19;
 
-int MOTOR_RB = 20;
-int MOTOR_RM = 18;
-int MOTOR_RF = 19;
+int MOTOR_RB = 1;
+int MOTOR_RM = 15;
+int MOTOR_RF = 20;
 
-int MOTOR_INTAKE = 14;
+int MOTOR_INTAKE1 = 17;
+int MOTOR_INTAKE2 = 11;
 
 int INERTIAL_SENSOR_PORT = 1;
 
@@ -60,7 +61,8 @@ pros::MotorGroup rightMotors({driveRB, driveRM, driveRF});
 // ------------------------------------------------------------------------------------------------------
 // Subsystems
 // ------------------------------------------------------------------------------------------------------
-pros::Motor intake(MOTOR_INTAKE, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor intake1(MOTOR_INTAKE1, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor intake2(MOTOR_INTAKE2, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 // ------------------------------------------------------------------------------------------------------
 // Sensors
@@ -88,7 +90,5 @@ pros::Controller controller(pros::E_CONTROLLER_MASTER);
 // ------------------------------------------------------------------------------------------------------
 // LEMLIB (For position tracking)
 // ------------------------------------------------------------------------------------------------------
-
-
 
 // ------------------------------------------------------------------------------------------------------

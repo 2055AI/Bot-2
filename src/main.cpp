@@ -61,6 +61,7 @@ void autonomous() {}
 void opcontrol() {
 	pros::delay(5000);
 
+	my_opcontrol();
 	// setDrive(6000, 6000);
 	// pros::delay(1000);
 	// setDrive(0, 0);

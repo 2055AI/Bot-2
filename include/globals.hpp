@@ -9,7 +9,8 @@ extern pros::Motor driveRF;
 extern pros::MotorGroup leftMotors;
 extern pros::MotorGroup rightMotors;
 
-extern pros::Motor intake;  
+extern pros::Motor intake1; 
+extern pros::Motor intake2;   
 
 extern pros::IMU inertial_sensor;
 extern pros::GPS GpsR;

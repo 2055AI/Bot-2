@@ -67,6 +67,7 @@ void initialize(void);
 void disabled(void);
 void competition_initialize(void);
 void opcontrol(void);
+
 #ifdef __cplusplus
 }
 #endif
@@ -75,6 +76,8 @@ void opcontrol(void);
 #include "globals.hpp"
 #include "drive.hpp"
 #include "tracking.hpp"
+#include "subsystems.hpp"
+#include "opcontrol.hpp"
 /**
  * You can add C++-only headers here
  */
