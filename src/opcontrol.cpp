@@ -21,11 +21,21 @@ void my_opcontrol() {
         //     pros::delay(2);
         // }
 
+        if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_A)) {
+            cataHangPrep();
+        }
+        if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_B)) {
+            cataHangElevate();
+        }
+        if (controller.get_digital_new_press(pros::E_CONTROLLER_DIGITAL_Y)) {
+            cataShoot();
+        }
+
         int x = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
     	int y = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
         
 
-        pros::delay(10);
+        pros::delay(50);
 
 
     }

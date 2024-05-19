@@ -66,8 +66,8 @@ void setDriveMotors() {
         }
     }
 
-    power = power * 600 / 127;
-    turn = turn * 600 / 127;
+    power = power * 12000 / 127;
+    turn = turn * 12000 / 127;
 
     if (controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y) < 0) power = -power;
 
