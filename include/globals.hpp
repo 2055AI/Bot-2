@@ -1,3 +1,14 @@
+#include "lemlib/chassis/chassis.hpp"
+#include "pros/adi.hpp"
+#include "pros/distance.hpp"
+#include "pros/gps.hpp"
+#include "pros/imu.hpp"
+#include "pros/misc.hpp"
+#include "pros/motors.hpp"
+#include "pros/optical.hpp"
+#include "pros/vision.hpp"
+
+
 extern pros::Motor driveLB;
 extern pros::Motor driveLM;
 extern pros::Motor driveLF;
@@ -26,3 +37,7 @@ extern pros::ADIDigitalOut wingBR;
 extern pros::ADIDigitalOut wingBL;
 
 extern pros::Controller controller;
+
+extern lemlib::TrackingWheel vert_tracking;
+extern lemlib::TrackingWheel hort_tracking;
+extern lemlib::Chassis chassis;

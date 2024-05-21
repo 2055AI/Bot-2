@@ -33,6 +33,12 @@ void my_opcontrol() {
 
         int x = controller.get_analog(pros::E_CONTROLLER_ANALOG_RIGHT_X);
     	int y = controller.get_analog(pros::E_CONTROLLER_ANALOG_LEFT_Y);
+
+        lemlib::Pose pose = chassis.getPose(); // get the current position of the robot
+
+        pros::lcd::set_text(5, "X: "  +  std::to_string(pose.x)); // print the x position
+        pros::lcd::set_text(6, "Y: " + std::to_string(pose.y)); // print the y position
+        pros::lcd::set_text(7, "Angle: " + std::to_string(pose.theta)); // print the heading
         
 
         pros::delay(50);

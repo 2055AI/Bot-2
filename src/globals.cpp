@@ -1,3 +1,4 @@
+#include "lemlib/chassis/trackingWheel.hpp"
 #include "main.h"
 #include "pros/adi.hpp"
 #include "pros/gps.h"
@@ -98,6 +99,69 @@ pros::ADIDigitalOut wingBL('D');
 // CONTROLLER
 // ------------------------------------------------------------------------------------------------------
 pros::Controller controller(pros::E_CONTROLLER_MASTER);
+
+
+// ------------------------------------------------------------------------------------------------------
+// LEMLIB (For position tracking)
+// ------------------------------------------------------------------------------------------------------
+
+/**
+ * @brief Define the parameters of your drivetrain here:
+ */
+lemlib::Drivetrain drivetrain {
+    &leftMotors, // left drivetrain motors
+    &rightMotors, // right drivetrain motors
+    10.30, // track width
+    lemlib::Omniwheel::NEW_275, // wheel diameter
+    600, // wheel rpm
+    8 // Chase Power
+};
+
+// forward/backward PID
+lemlib::ControllerSettings linearController {
+    10, // kP    //8
+    0, // KI
+    3, // kD May lower in the future      //25
+    0, // anti windup
+    1, // smallErrorRange //1
+    300, // smallErrorTimeout //300
+    3, // largeErrorRange //3
+    600, // largeErrorTimeout //600
+    20 // slew rate     //5
+};
+ 
+// turning PID
+lemlib::ControllerSettings angularController {
+    2,
+    0, // kI
+    10,
+    0, // anti windup
+    1, // smallErrorRange
+    100, // smallErrorTimeout
+    3, // largeErrorRange
+    500, // largeErrorTimeout
+    0 // slew rate
+};
+    
+lemlib::TrackingWheel vert_tracking(&vert_encoder, lemlib::Omniwheel::NEW_275, 1.75);
+lemlib::TrackingWheel hort_tracking(&hort_encoder, lemlib::Omniwheel::NEW_275, 4.25);
+
+/**
+ * @brief Define the sensors used for the robot here:
+ */
+lemlib::OdomSensors sensors {
+    &vert_tracking, // vertical tracking wheel 1
+    nullptr, // vertical tracking wheel 2
+    &hort_tracking, // horizontal tracking wheel 1
+    nullptr, // horizontal tracking wheel 2
+    &inertial_sensor // inertial sensor
+};
+
+lemlib::Chassis chassis(drivetrain, linearController, angularController, sensors);
+
+// ------------------------------------------------------------------------------------------------------
+
+
 
 // ------------------------------------------------------------------------------------------------------
 // LEMLIB (For position tracking)

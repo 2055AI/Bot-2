@@ -8,10 +8,11 @@
  */
 void initialize() {
 	pros::lcd::initialize();
+	chassis.calibrate(true);
 	pros::lcd::set_text(1, "Hello PROS User!");
 	
 	// pros::Task log_data_task(log_data);
-	pros::Task screen_task(screen);
+	// pros::Task screen_task(screen);
 
 	cata1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	cata2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
@@ -62,7 +63,7 @@ void autonomous() {}
  * task, not resume it from where it left off.
  */
 void opcontrol() {
-	pros::delay(5000);
+	pros::delay(2000);
 
 	my_opcontrol();
 	// chassis.turnToHeading(90, 9999999);
