@@ -10,6 +10,22 @@ void initialize() {
 	pros::lcd::initialize();
 	chassis.calibrate(true);
 	pros::lcd::set_text(1, "Hello PROS User!");
+
+	driveLB.set_brake_mode(MOTOR_BRAKE_COAST);
+	driveLM.set_brake_mode(MOTOR_BRAKE_COAST);
+    driveLF.set_brake_mode(MOTOR_BRAKE_COAST);
+
+    driveRB.set_brake_mode(MOTOR_BRAKE_COAST);
+	driveRM.set_brake_mode(MOTOR_BRAKE_COAST);
+    driveRF.set_brake_mode(MOTOR_BRAKE_COAST);
+
+	driveLB.tare_position();
+	driveLM.tare_position();
+    driveLF.tare_position();
+
+    driveRB.tare_position();
+	driveRM.tare_position();
+    driveRF.tare_position();
 	
 	// pros::Task log_data_task(log_data);
 	// pros::Task screen_task(screen);
@@ -47,7 +63,9 @@ void competition_initialize() {}
  * will be stopped. Re-enabling the robot will restart the task, not re-start it
  * from where it left off.
  */
-void autonomous() {}
+void autonomous() {
+	test_auton();
+}
 
 /**
  * Runs the operator control code. This function will be started in its own task

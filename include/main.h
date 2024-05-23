@@ -78,6 +78,7 @@ void opcontrol(void);
 #include "tracking.hpp"
 #include "subsystems.hpp"
 #include "opcontrol.hpp"
+#include "autons.hpp"
 /**
  * You can add C++-only headers here
  */
