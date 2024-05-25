@@ -5,13 +5,39 @@
 #include <string>
 
 void setIntake(int power) {
-    intake1.move(power);
-    intake2.move(power);
+    shooter1.move(power);
+    shooter2.move(power);
 }
 
 void setIntakeMotors() {
-    int intake_power = 127 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2) - controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1));
+    // r1 up, r2 down
+    int intake_power = 60 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2)) - 127 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1));
+    // int intake_power = 127 * (controller.get_digital(pros::E_CONTROLLER_DIGITAL_R2) - controller.get_digital(pros::E_CONTROLLER_DIGITAL_R1));
     setIntake(intake_power);    
+}
+
+void intakeShoot() {
+    setIntake(-127);
+    pros::delay(100);
+    while (true) {
+        setIntake(-127);
+        if (shooter1.get_actual_velocity() >= -10) {
+            break;
+        }
+    }
+    setIntake(0);
+}
+
+void intakeReset() {
+    setIntake(50);
+    pros::delay(100);
+    while (true) {
+        setIntake(127);
+        if (shooter1.get_actual_velocity() <= 10) {
+            break;
+        }
+    }
+    setIntake(0);
 }
 
 void setCata(int power) {
@@ -57,3 +83,5 @@ void cataHangElevate() {
         setCata(0);
     });
 }
+
+

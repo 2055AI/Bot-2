@@ -20,8 +20,8 @@ extern pros::Motor driveRF;
 extern pros::MotorGroup leftMotors;
 extern pros::MotorGroup rightMotors;
 
-extern pros::Motor intake1; 
-extern pros::Motor intake2;  
+extern pros::Motor shooter1; 
+extern pros::Motor shooter2;  
 
 extern pros::Motor cata1;
 extern pros::Motor cata2;
@@ -30,6 +30,7 @@ extern pros::IMU inertial_sensor;
 extern pros::Rotation vert_encoder;
 extern pros::Rotation hort_encoder;
 extern pros::Distance cata_distance_sensor;
+extern pros::Optical optical_sensor;
 
 extern pros::ADIDigitalOut hang;
 extern pros::ADIDigitalOut wingF;

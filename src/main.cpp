@@ -32,6 +32,9 @@ void initialize() {
 
 	cata1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	cata2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+	shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 }
 
 /**
@@ -64,7 +67,9 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	test_auton();
+	// test_auton();
+	// optical_test();
+	pid_turn_test();
 }
 
 /**

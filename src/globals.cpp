@@ -34,8 +34,8 @@ int MOTOR_RB = 1;
 int MOTOR_RM = 15;
 int MOTOR_RF = 20;
 
-int MOTOR_INTAKE1 = 17;
-int MOTOR_INTAKE2 = 11;
+int SHOOTER_PORT1 = 17;
+int SHOOTER_PORT2 = 11;
 
 int MOTOR_CATAPULT1 = 18;
 int MOTOR_CATAPULT2 = 13;
@@ -49,6 +49,8 @@ int TRACKING_WHEEL_VERTICAL_SENSOR_PORT = 2;
 int TRACKING_WHEEL_HORIZONTAL_SENSOR_PORT = 5;
 
 char CATA_DISTANCE_SENSOR_PORT = 7;
+
+int OPTICAL_SENSOR_PORT = 8;
 
 
 // lemlib::TrackingWheel back_tracking_wheel(&back_rot, 2.75, -5.75);
@@ -71,8 +73,8 @@ pros::MotorGroup rightMotors({driveRB, driveRM, driveRF});
 // ------------------------------------------------------------------------------------------------------
 // Subsystems
 // ------------------------------------------------------------------------------------------------------
-pros::Motor intake1(MOTOR_INTAKE1, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
-pros::Motor intake2(MOTOR_INTAKE2, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor shooter1(SHOOTER_PORT1, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
+pros::Motor shooter2(SHOOTER_PORT2, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 
 pros::Motor cata1(MOTOR_CATAPULT1, pros::E_MOTOR_GEARSET_18, false, pros::E_MOTOR_ENCODER_DEGREES);
 pros::Motor cata2(MOTOR_CATAPULT2, pros::E_MOTOR_GEARSET_18, true, pros::E_MOTOR_ENCODER_DEGREES);
@@ -85,6 +87,7 @@ pros::IMU inertial_sensor(INERTIAL_SENSOR_PORT);
 pros::Rotation vert_encoder(TRACKING_WHEEL_VERTICAL_SENSOR_PORT);
 pros::Rotation hort_encoder(TRACKING_WHEEL_HORIZONTAL_SENSOR_PORT);
 pros::Distance cata_distance_sensor(CATA_DISTANCE_SENSOR_PORT);
+pros::Optical optical_sensor(OPTICAL_SENSOR_PORT);
 
 // ------------------------------------------------------------------------------------------------------
 // Pneumatics
@@ -132,9 +135,9 @@ lemlib::ControllerSettings linearController {
  
 // turning PID
 lemlib::ControllerSettings angularController {
-    2,
+    1, // kP
     0, // kI
-    10,
+    0, // kD
     0, // anti windup
     1, // smallErrorRange
     100, // smallErrorTimeout
