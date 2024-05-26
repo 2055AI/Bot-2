@@ -44,15 +44,37 @@ void optical_test() {
     }
 }
 
-void pid_turn_test() {
-    chassis.setPose(0, 0, 0);
-    chassis.moveToPose(0, 0, 90, 3000);
-    lemlib::Pose pose = chassis.getPose();
-    pros::lcd::set_text(3, std::to_string(pose.theta));
-    pros::delay(2000);
+// void pid_turn_test() {
+//     chassis.setPose(0, 0, 0);
+//     chassis.moveToPose(0, 0, 90, 3000);
+//     lemlib::Pose pose = chassis.getPose();
+//     pros::lcd::set_text(3, std::to_string(pose.theta));
+//     pros::delay(2000);
     
-    chassis.moveToPose(0, 0, -90, 3000);
-    lemlib::Pose pose = chassis.getPose();
-    pros::lcd::set_text(3, std::to_string(pose.theta));
+//     chassis.moveToPose(0, 0, -90, 3000);
+//     lemlib::Pose pose = chassis.getPose();
+//     pros::lcd::set_text(3, std::to_string(pose.theta));
 
+// }
+
+void auton() {
+    chassis.setPose(-32, -55, 0);
+    chassis.moveToPose(-35, -11, 0, 5000, {}, false);
+    pros::delay(500);
+    chassis.turnToHeading(-90, 500, {}, false);
+    pros::delay(500);
+    wingBR.set_value(true);
+    pros::delay(500);
+    chassis.moveToPose(72, -11, -90, 1000, {.forwards=false, .maxSpeed = 80}, false);
+    chassis.setPose(-7.75, chassis.getPose().y, chassis.getPose().theta);
+    pros::delay(500);
+    chassis.moveToPose(-10.75, chassis.getPose().y, -90, 1000, {.forwards=false}, false); // move back 3 inches
+    wingBR.set_value(false);
+    pros::delay(500);
+    chassis.turnToHeading(-20, 1000, {}, false);
+    pros::delay(500);
+    setDrive(-400, -400);
+    pros::delay(2000);
+    setDrive(0, 0);
+    chassis.setPose(-8.25, -39.5, 0);
 }

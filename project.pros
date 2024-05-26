@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "PIDTest",
+    "project_name": "Auton",
     "target": "v5",
     "templates": {
       "LemLib": {

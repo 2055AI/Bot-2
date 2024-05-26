@@ -68,8 +68,9 @@ void competition_initialize() {}
  */
 void autonomous() {
 	// test_auton();
-	// optical_test();
-	pid_turn_test();
+	// optical_test(); // SLOT 2
+	// pid_turn_test();
+	auton(); // SLOT 1
 }
 
 /**

@@ -122,9 +122,9 @@ lemlib::Drivetrain drivetrain {
 
 // forward/backward PID
 lemlib::ControllerSettings linearController {
-    12, // kP    //8
+    9.9, // kP    //8
     0, // KI
-    0, // kD May lower in the future      //25
+    13, // kD May lower in the future      //5 //21
     0, // anti windup
     1, // smallErrorRange //1
     300, // smallErrorTimeout //300
@@ -135,9 +135,9 @@ lemlib::ControllerSettings linearController {
  
 // turning PID
 lemlib::ControllerSettings angularController {
-    1, // kP
+    1.5, // kP
     0, // kI
-    0, // kD
+    8, // kD
     0, // anti windup
     1, // smallErrorRange
     100, // smallErrorTimeout

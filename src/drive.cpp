@@ -8,13 +8,13 @@
 #include <string>
 
 void setDrive(double left, double right) {
-    driveLB.move_voltage(left);
-    driveLM.move_voltage(left);
-    driveLF.move_voltage(left);
+    driveLB.move_velocity(left);
+    driveLM.move_velocity(left);
+    driveLF.move_velocity(left);
 
-    driveRB.move_voltage(right);
-    driveRM.move_voltage(right);
-    driveRF.move_voltage(right);
+    driveRB.move_velocity(right);
+    driveRM.move_velocity(right);
+    driveRF.move_velocity(right);
 }   
 
 
