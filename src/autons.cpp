@@ -28,17 +28,9 @@ void optical_test() {
     intakeReset();
     while (true) {
         if (optical_sensor.get_hue() >= 90 && optical_sensor.get_hue() <= 120) {
-            pros::lcd::set_text(4, "");
-            pros::lcd::set_text(3, "triball detected!");
-            pros::delay(500);
+            pros::delay(250);
             intakeShoot();
-            pros::lcd::set_text(3, "shot!");
             intakeReset();
-            pros::lcd::set_text(3, "reset!");
-        }
-        else {
-            pros::lcd::set_text(4, "waiting for triball!");
-            pros::lcd::set_text(3, "");
         }
         pros::delay(20);
     }
@@ -76,5 +68,6 @@ void auton() {
     setDrive(-400, -400);
     pros::delay(2000);
     setDrive(0, 0);
-    chassis.setPose(-8.25, -39.5, 0);
+    chassis.setPose(-8.5, -40, 0);
+    // chassis.moveToPose()
 }
