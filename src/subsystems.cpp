@@ -84,4 +84,12 @@ void cataHangElevate() {
     });
 }
 
-
+void bowl(int num, int delay) {
+    wingBL.set_value(true);
+    chassis.turnToHeading(-5, 600, {}, false);
+    for (int i = 0; i < num-1; i++) {
+        chassis.turnToHeading(-78, 600, {}, false);
+        chassis.turnToHeading(-5, 600, {}, false);
+        pros::delay(delay);
+    }
+}

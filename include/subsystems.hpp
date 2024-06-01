@@ -9,3 +9,5 @@ void setCata(int power);
 void cataShoot();
 void cataHangPrep();
 void cataHangElevate();
+
+void bowl(int num, int delay);

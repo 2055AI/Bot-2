@@ -65,9 +65,35 @@ void auton() {
     pros::delay(500);
     chassis.turnToHeading(-20, 1000, {}, false);
     pros::delay(500);
-    setDrive(-400, -400);
+    setDrive(-250, -250);
     pros::delay(2000);
     setDrive(0, 0);
+
+    // MOVE TO BOWL
     chassis.setPose(-8.5, -40, 0);
-    // chassis.moveToPose()
+    chassis.moveToPose(-11, -25, -10, 2000, {}, false);
+    pros::delay(500);
+    chassis.turnToHeading(50, 1000, {}, false);
+    pros::delay(500);
+    chassis.moveToPose(-62, -54, 45, 3000, {.forwards=false}, false);
+    pros::delay(500);
+    chassis.moveToPose(chassis.getPose().x + 2, chassis.getPose().y + 2, chassis.getPose().theta, 1000, {.maxSpeed=60}, false);
+    pros::delay(500);
+    chassis.turnToHeading(-35, 1000, {}, false);
+    pros::delay(500);
+    wingBL.set_value(true);
+    chassis.moveToPose(chassis.getPose().x + 3.441, chassis.getPose().y - 4.915, -35, 1000, {.forwards=true}, false);
+    pros::delay(500);
+
+    // chassis.moveToPose(-8.5, -20, 0, 5000, {}, false);
+    // chassis.turnToHeading(55, 500, {},false);
+    // chassis.moveToPose(-48,-58,41, 5000, {.forwards=false});
+    // pros::delay(1000);
+    // bowl(5,1500);
+
+    // Score the balls
+    // chassis.setPose(-51,-52,chassis.getPose().theta);
+    // chassis.moveToPose(-38, -55, -90, 2000, {.forwards=false}, true);
+    // chassis.moveToPose(32, -55, -90, 4000, {.forwards=false}, true);
+    // pros::delay(1500);
 }
