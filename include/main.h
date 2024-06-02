@@ -79,6 +79,8 @@ void opcontrol(void);
 #include "subsystems.hpp"
 #include "opcontrol.hpp"
 #include "autons.hpp"
+#include "skills.hpp"
+#include "helper.hpp"
 /**
  * You can add C++-only headers here
  */

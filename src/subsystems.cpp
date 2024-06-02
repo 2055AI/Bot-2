@@ -29,7 +29,7 @@ void intakeShoot() {
 }
 
 void intakeReset() {
-    setIntake(50);
+    setIntake(127);
     pros::delay(100);
     while (true) {
         setIntake(127);
@@ -44,12 +44,13 @@ void setCata(int power) {
     cata1.move(power);
     cata2.move(power);
 }
+
 void cataShoot() {
     pros::Task moveCata([&] {
         while (true) {
             setCata(127);
 
-            if (cata_distance_sensor.get() <= 100) break;
+            if (cata_distance_sensor.get() <= 45) break;  //100
 
             pros::delay(20);
         }
@@ -57,6 +58,7 @@ void cataShoot() {
         setCata(0);
     });
 }
+
 void cataHangPrep() {
     pros::Task moveCata([&] {
         while (true) {

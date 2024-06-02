@@ -93,9 +93,8 @@ pros::Optical optical_sensor(OPTICAL_SENSOR_PORT);
 // Pneumatics
 // ------------------------------------------------------------------------------------------------------
 pros::ADIDigitalOut hang('A');
-pros::ADIDigitalOut wingF('B');
+pros::ADIDigitalOut wingBL('B');
 pros::ADIDigitalOut wingBR('C');
-pros::ADIDigitalOut wingBL('D');
 
 
 // ------------------------------------------------------------------------------------------------------
