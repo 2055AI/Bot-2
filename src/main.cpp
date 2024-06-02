@@ -70,8 +70,8 @@ void autonomous() {
 	// test_auton();
 	// optical_test(); // SLOT 2
 	// pid_turn_test();
-	auton(); // SLOT 1
-	// skills(); // SLOT 2
+	// auton(); // SLOT 1
+	skills(); // SLOT 2
 	// test_auton(); // SLOT 3
 }
 

@@ -86,7 +86,7 @@ void bowl_matchload(int num) {
             } 
 
         }
-        if (time > 2000 && counter <= 2) {
+        if (time > 2000 && counter <= 1) {
             intakeShoot(127);
             setIntake(0);
             wingBL.set_value(true);
@@ -137,6 +137,7 @@ void endgame() {
     pros::delay(750);
     hang.set_value(true);
     cataShoot();    
+    pros::delay(200);
     setIntake(-100);
     pros::delay(150);
     setIntake(0);

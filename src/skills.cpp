@@ -25,7 +25,7 @@ void skills() {
     cataShoot();
 
     // Shoot 22 Tri-balls
-    skills_matchload(1);
+    skills_matchload(22);
 
     // Push Over Middle Tri-balls
     chassis.turnToHeading(-35, 800, {}, false);
@@ -65,7 +65,7 @@ void skills() {
     chassis.moveToPose(-50, -54, 235, 2000, {}, false);
 
     // Shoot 12 Tri-balls OR Bowl 8
-    bowl_matchload(3);
+    bowl_matchload(12);
     pros::delay(150);
 
     // Bowl / Side Ram
@@ -76,7 +76,7 @@ void skills() {
     wingBR.set_value(true);
     // wingBL.set_value(true);
     pros::delay(150);
-    chassis.moveToPose(25, -66, -90, 2500, {.forwards = false, .minSpeed = 100}, false);
+    chassis.moveToPose(25, -64, -90, 2500, {.forwards = false, .minSpeed = 100}, false);
     // wingBL.set_value(false);
     chassis.moveToPose(64, -10, 180, 2500, {.forwards = false, .minSpeed = 127}, false);
     // chassis.moveToPose(64, chassis.getPose().y - 15, 180, 1000, {.minSpeed = 80}, false);
@@ -89,6 +89,8 @@ void skills() {
     chassis.moveToPose(10, -56, -90, 2000, {.minSpeed = 80}, false);
     chassis.moveToPose(25, -56, -90, 2000, {.forwards = false, .minSpeed = 100}, false);
 
+    shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     endgame();
     
 }
