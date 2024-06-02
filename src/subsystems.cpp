@@ -101,7 +101,7 @@ void bowl_isolation(int num, int delay) {
     for (int i = 0; i < (num-1); i++) {
         // chassis.turnToHeading(-90, 500, {.minSpeed=90}, false);
         chassis.turnToHeading(-90, 500, {.minSpeed=85}, false);
-        chassis.turnToHeading(-35, 500, {}, false);
+        chassis.turnToHeading(-25, 500, {}, false);
         pros::delay(delay);
     }
     chassis.turnToHeading(-90, 600, {.minSpeed=85}, false);

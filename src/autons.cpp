@@ -86,13 +86,12 @@ void bowl_matchload(int num) {
             } 
 
         }
-        if (time > 2000 && counter == 0) {
+        if (time > 2000 && counter <= 2) {
             intakeShoot(127);
             setIntake(0);
             wingBL.set_value(true);
-            pros::delay(100);
-            chassis.turnToHeading(150, 1200, {}, false);
-            bowl_skills(1, 300);
+            pros::delay(200);
+            bowl_isolation(8, 500);
             wingBL.set_value(false);
             break;
         }
@@ -127,15 +126,36 @@ void last_ball() {
 
 // }
 
+void endgame() {
+    setIntake(127);
+    setCata(-127);
+    pros::delay(600);
+    setIntake(0);
+    setCata(0);
+
+    setDrive(400, 400);
+    pros::delay(750);
+    hang.set_value(true);
+    cataShoot();    
+    setIntake(-100);
+    pros::delay(150);
+    setIntake(0);
+    setDrive(0, 0);
+}
+
 void auton() {
+
+    shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+
     chassis.setPose(-32, -55, 0);
-    chassis.moveToPose(-35, -11, 0, 5000, {}, false);
+    chassis.moveToPose(-35, -12, 0, 5000, {}, false);
     pros::delay(500);
     chassis.turnToHeading(-90, 500, {}, false);
     pros::delay(500);
     wingBR.set_value(true);
     pros::delay(500);
-    chassis.moveToPose(72, -11, -90, 1000, {.forwards=false, .maxSpeed = 80}, false);
+    chassis.moveToPose(72, -12, -90, 1000, {.forwards=false, .maxSpeed = 105}, false);
     chassis.setPose(-7.75, chassis.getPose().y, chassis.getPose().theta);
     pros::delay(500);
     chassis.moveToPose(-10.75, chassis.getPose().y, -90, 1000, {.forwards=false}, false); // move back 3 inches
@@ -168,32 +188,38 @@ void auton() {
     pros::delay(500);
     chassis.turnToHeading(-35, 1000, {}, false);
     pros::delay(500);
-    wingBL.set_value(true);
     chassis.moveToPose(chassis.getPose().x + 3.441, chassis.getPose().y - 4.915, -35, 1000, {.forwards=true}, false);
     pros::delay(500);
 
     // MATCH LOAD
-    bowl_isolation(6, 750);
+    bowl_isolation(1, 750); //6
     pros::delay(500);
 
     // BOWL & SIDE RAM
     chassis.turnToHeading(-50, 900, {}, false);
-    wingBR.set_value(true);
     wingBL.set_value(true);
     pros::delay(150);
-    chassis.moveToPose(25, -64, -90, 3000, {.forwards = false, .minSpeed = 80}, false);
-    chassis.moveToPose(64, -10, 180, 2500, {.forwards = false, .minSpeed = 127});
+    chassis.moveToPose(25, -64, -90, 3000, {.forwards = false, .maxSpeed = 98}, false);
+    chassis.moveToPose(66, -10, 180, 2500, {.forwards = false, .maxSpeed = 127});
     chassis.waitUntil(30);
     wingBL.set_value(false);
     chassis.waitUntilDone();
+    chassis.setPose(61, -29, 180);
     
     // SECOND SIDE RAM
     chassis.moveToPose(64, chassis.getPose().y - 15, 180, 1200, {}, false);
-    chassis.turnToHeading(190, 500, {}, false);
+    chassis.turnToHeading(195, 500, {}, false);
     // chassis.moveToPose(64, chassis.getPose().y + 35, 180, 1200, {.forwards = false, .minSpeed = 127}, false);
     setDrive(-400, -400);
     pros::delay(1000);
     setDrive(0, 0);
+    wingBL.set_value(false);
+    wingBR.set_value(false);
+    chassis.setPose(63, -29, 180);
+    chassis.turnToHeading(0,500,{},false);
+    pros::delay(1000);
+    chassis.moveToPose(0, -56, 90, 2000, {.forwards=false, .minSpeed = 80}, false);
+    // chassis.moveToPose(5, -58, -90, 5000, {}, false);
 
 
 

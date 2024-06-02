@@ -33,8 +33,8 @@ void initialize() {
 	cata1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	cata2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 
-	shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
-	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 }
 
 /**
