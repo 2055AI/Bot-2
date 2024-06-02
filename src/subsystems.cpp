@@ -16,11 +16,11 @@ void setIntakeMotors() {
     setIntake(intake_power);    
 }
 
-void intakeShoot() {
-    setIntake(-127);
+void intakeShoot(int power) {
+    setIntake(-1 * power);
     pros::delay(100);
     while (true) {
-        setIntake(-127);
+        setIntake(-1 * power);
         if (shooter1.get_actual_velocity() >= -10) {
             break;
         }
@@ -86,7 +86,7 @@ void cataHangElevate() {
     });
 }
 
-void bowl(int num, int delay) {
+void bowl_skills(int num, int delay) {
     wingBL.set_value(true);
     chassis.turnToHeading(-5, 600, {}, false);
     for (int i = 0; i < num-1; i++) {
@@ -94,4 +94,15 @@ void bowl(int num, int delay) {
         chassis.turnToHeading(-5, 600, {}, false);
         pros::delay(delay);
     }
+}
+
+void bowl_isolation(int num, int delay) {
+    wingBL.set_value(true);
+    for (int i = 0; i < (num-1); i++) {
+        // chassis.turnToHeading(-90, 500, {.minSpeed=90}, false);
+        chassis.turnToHeading(-90, 500, {.minSpeed=85}, false);
+        chassis.turnToHeading(-35, 500, {}, false);
+        pros::delay(delay);
+    }
+    chassis.turnToHeading(-90, 600, {.minSpeed=85}, false);
 }

@@ -13,8 +13,10 @@
 
 
 void test_auton() {
-    chassis.setPose(0, 0, 0);
-    chassis.moveToPoint(0, 24, 5000, {},false);
+    setIntake(60);
+    pros::delay(300);
+    setIntake(0);
+
  //   chassis.waitUntilDone();
 //     pros::delay(1000);
 //     chassis.moveToPose(0, 0, 0, 5000, {.forwards = false});
@@ -35,7 +37,7 @@ void optical_test() {
     while (true) {
         if (optical_sensor.get_hue() >= 90 && optical_sensor.get_hue() <= 120) {
             pros::delay(250);
-            intakeShoot();
+            intakeShoot(127);
             intakeReset();
         }
         pros::delay(20);
@@ -49,12 +51,12 @@ void skills_matchload(int num) {
         if (optical_sensor.get_hue() >= 90 && optical_sensor.get_hue() <= 120) {
             if (counter == num - 1) {
                 pros::delay(125);
-                intakeShoot();
+                intakeShoot(127);
                 setIntake(0);
                 counter += 1;
             } else {
                 pros::delay(125);
-                intakeShoot();
+                intakeShoot(127);
                 intakeReset();
                 counter += 1;
             } 
@@ -73,24 +75,24 @@ void bowl_matchload(int num) {
         if (optical_sensor.get_hue() >= 90 && optical_sensor.get_hue() <= 120) {
             if (counter == num - 1) {
                 pros::delay(125);
-                intakeShoot();
+                intakeShoot(127);
                 setIntake(0);
                 counter += 1;
             } else {
                 pros::delay(125);
-                intakeShoot();
+                intakeShoot(127);
                 intakeReset();
                 counter += 1;
             } 
 
         }
         if (time > 2000 && counter == 0) {
-            intakeShoot();
+            intakeShoot(127);
             setIntake(0);
             wingBL.set_value(true);
             pros::delay(100);
             chassis.turnToHeading(150, 1200, {}, false);
-            bowl(1, 300);
+            bowl_skills(1, 300);
             wingBL.set_value(false);
             break;
         }
@@ -105,7 +107,7 @@ void last_ball() {
     while (counter < 1) {
         if (optical_sensor.get_hue() >= 90 && optical_sensor.get_hue() <= 120) {
             pros::delay(150);
-            intakeShoot();
+            intakeShoot(127);
             counter += 1;
         }
     pros::delay(15); 
@@ -126,27 +128,36 @@ void last_ball() {
 // }
 
 void auton() {
-    // chassis.setPose(-32, -55, 0);
-    // chassis.moveToPose(-35, -11, 0, 5000, {}, false);
-    // pros::delay(500);
-    // chassis.turnToHeading(-90, 500, {}, false);
-    // pros::delay(500);
-    // wingBR.set_value(true);
-    // pros::delay(500);
-    // chassis.moveToPose(72, -11, -90, 1000, {.forwards=false, .maxSpeed = 80}, false);
-    // chassis.setPose(-7.75, chassis.getPose().y, chassis.getPose().theta);
-    // pros::delay(500);
-    // chassis.moveToPose(-10.75, chassis.getPose().y, -90, 1000, {.forwards=false}, false); // move back 3 inches
-    // wingBR.set_value(false);
-    // pros::delay(500);
-    // chassis.turnToHeading(-20, 1000, {}, false);
-    // pros::delay(500);
-    // setDrive(-250, -250);
-    // pros::delay(2000);
-    // setDrive(0, 0);
+    chassis.setPose(-32, -55, 0);
+    chassis.moveToPose(-35, -11, 0, 5000, {}, false);
+    pros::delay(500);
+    chassis.turnToHeading(-90, 500, {}, false);
+    pros::delay(500);
+    wingBR.set_value(true);
+    pros::delay(500);
+    chassis.moveToPose(72, -11, -90, 1000, {.forwards=false, .maxSpeed = 80}, false);
+    chassis.setPose(-7.75, chassis.getPose().y, chassis.getPose().theta);
+    pros::delay(500);
+    chassis.moveToPose(-10.75, chassis.getPose().y, -90, 1000, {.forwards=false}, false); // move back 3 inches
+    wingBR.set_value(false);
+    pros::delay(500);
+    chassis.turnToHeading(-20, 1000, {}, false);
+    pros::delay(500);
+    setDrive(-250, -250);
+    pros::delay(2000);
+    setDrive(0, 0);
+    chassis.setPose(-8.5, -40, 0);
+    
+    // SET CATAPULT AND INTAKE IN PROPER POSITIONS
+    setCata(-127);
+    pros::delay(65);
+    setCata(0);
+    intakeReset();
+    cataShoot();
+    intakeShoot(60);
+    
 
     // MOVE TO BOWL
-    chassis.setPose(-8.5, -40, 0);
     chassis.moveToPose(-11, -25, -10, 2000, {}, false);
     pros::delay(500);
     chassis.turnToHeading(50, 1000, {}, false);
@@ -160,6 +171,31 @@ void auton() {
     wingBL.set_value(true);
     chassis.moveToPose(chassis.getPose().x + 3.441, chassis.getPose().y - 4.915, -35, 1000, {.forwards=true}, false);
     pros::delay(500);
+
+    // MATCH LOAD
+    bowl_isolation(6, 750);
+    pros::delay(500);
+
+    // BOWL & SIDE RAM
+    chassis.turnToHeading(-50, 900, {}, false);
+    wingBR.set_value(true);
+    wingBL.set_value(true);
+    pros::delay(150);
+    chassis.moveToPose(25, -64, -90, 3000, {.forwards = false, .minSpeed = 80}, false);
+    chassis.moveToPose(64, -10, 180, 2500, {.forwards = false, .minSpeed = 127});
+    chassis.waitUntil(30);
+    wingBL.set_value(false);
+    chassis.waitUntilDone();
+    
+    // SECOND SIDE RAM
+    chassis.moveToPose(64, chassis.getPose().y - 15, 180, 1200, {}, false);
+    chassis.turnToHeading(190, 500, {}, false);
+    // chassis.moveToPose(64, chassis.getPose().y + 35, 180, 1200, {.forwards = false, .minSpeed = 127}, false);
+    setDrive(-400, -400);
+    pros::delay(1000);
+    setDrive(0, 0);
+
+
 
     // chassis.moveToPose(-8.5, -20, 0, 5000, {}, false);
     // chassis.turnToHeading(55, 500, {},false);
