@@ -193,15 +193,15 @@ void auton() {
     pros::delay(500);
 
     // MATCH LOAD
-    bowl_isolation(1, 750); //6
+    bowl_isolation(6, 750); //6
     pros::delay(500);
 
     // BOWL & SIDE RAM
     chassis.turnToHeading(-50, 900, {}, false);
     wingBL.set_value(true);
     pros::delay(150);
-    chassis.moveToPose(25, -64, -90, 3000, {.forwards = false, .maxSpeed = 98}, false);
-    chassis.moveToPose(66, -10, 180, 2500, {.forwards = false, .maxSpeed = 127});
+    chassis.moveToPose(34, -64, -90, 3000, {.forwards = false, .maxSpeed = 98}, false);
+    chassis.moveToPose(66, 0, 180, 2500, {.forwards = false, .maxSpeed = 127});
     chassis.waitUntil(30);
     wingBL.set_value(false);
     chassis.waitUntilDone();
@@ -219,7 +219,7 @@ void auton() {
     chassis.setPose(63, -29, 180);
     chassis.turnToHeading(0,500,{},false);
     pros::delay(1000);
-    chassis.moveToPose(0, -56, 90, 2000, {.forwards=false, .minSpeed = 80}, false);
+    chassis.moveToPose(0, -56, 90, 2000, {.forwards=false}, false);
     // chassis.moveToPose(5, -58, -90, 5000, {}, false);
 
 
