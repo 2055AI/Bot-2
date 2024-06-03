@@ -25,7 +25,7 @@ void skills() {
     cataShoot();
 
     // Shoot 22 Tri-balls
-    skills_matchload(22);
+    skills_matchload(1);
 
     // Push Over Middle Tri-balls
     chassis.turnToHeading(-35, 800, {}, false);
@@ -42,14 +42,16 @@ void skills() {
     pros::delay(400);
     setDrive(0, 0);
     chassis.moveToPose(-5, -45, 0, 1200, {.forwards = false, .minSpeed = 120}, false);
+    // chassis.moveToPose(-5, chassis.getPose().y + 15, 0, 1000, {}, false);
+    // chassis.moveToPose(-5, chassis.getPose().y - 20, 0, 1000, {.forwards = false, .minSpeed = 110}, false);
     wingBL.set_value(false);
 
     // Distance Sensor Resets
     // wallReset("right", "right");
 
     // Move to Other Matchload Bar
-    chassis.setPose(chassis.getPose().x, -40, 0);
-    pros::delay(250);
+    potential_reset(chassis.getPose().x, -40, chassis.getPose().theta);
+    pros::delay(300);
     chassis.moveToPose(chassis.getPose().x, -30, 0, 1000, {}, false);
     pros::delay(150);
     chassis.turnToHeading(240, 900, {}, false);
@@ -62,7 +64,7 @@ void skills() {
     wingBR.set_value(false);
     pros::delay(150);
     chassis.turnToHeading(235, 1100, {}, false);
-    chassis.moveToPose(-50, -54, 235, 2000, {}, false);
+    chassis.moveToPose(-50, -54, 235, 1000, {}, false);
 
     // Shoot 12 Tri-balls OR Bowl 8
     bowl_matchload(12);
@@ -76,7 +78,7 @@ void skills() {
     wingBR.set_value(true);
     // wingBL.set_value(true);
     pros::delay(150);
-    chassis.moveToPose(25, -64, -90, 2500, {.forwards = false, .minSpeed = 100}, false);
+    chassis.moveToPose(25, -65, -90, 2500, {.forwards = false, .minSpeed = 100}, false);
     // wingBL.set_value(false);
     chassis.moveToPose(64, -10, 180, 2500, {.forwards = false, .minSpeed = 127}, false);
     // chassis.moveToPose(64, chassis.getPose().y - 15, 180, 1000, {.minSpeed = 80}, false);
@@ -87,7 +89,8 @@ void skills() {
     wingBR.set_value(false);
     pros::delay(150);
     chassis.moveToPose(10, -56, -90, 2000, {.minSpeed = 80}, false);
-    chassis.moveToPose(25, -56, -90, 2000, {.forwards = false, .minSpeed = 100}, false);
+    chassis.moveToPose(25, -54, -90, 2000, {.forwards = false, .minSpeed = 100}, false);
+    chassis.turnToHeading(-90, 900, {}, false);
 
     shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
