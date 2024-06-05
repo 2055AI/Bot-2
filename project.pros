@@ -1,7 +1,7 @@
 {
   "py/object": "pros.conductor.project.Project",
   "py/state": {
-    "project_name": "SKILLS",
+    "project_name": "AUTON",
     "target": "v5",
     "templates": {
       "LemLib": {
@@ -351,7 +351,7 @@
       }
     },
     "upload_options": {
-      "slot": 3
+      "slot": 1
     },
     "use_early_access": false
   }

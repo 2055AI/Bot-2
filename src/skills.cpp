@@ -25,7 +25,7 @@ void skills() {
     cataShoot();
 
     // Shoot 22 Tri-balls
-    skills_matchload(1);
+    skills_matchload(22);
 
     // Push Over Middle Tri-balls
     chassis.turnToHeading(-35, 800, {}, false);
@@ -94,6 +94,6 @@ void skills() {
 
     shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    endgame();
+    // endgame();
     
 }
