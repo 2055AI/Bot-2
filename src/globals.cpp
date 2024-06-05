@@ -44,6 +44,8 @@ int INERTIAL_SENSOR_PORT = 6;
 
 int GPS_LEFT_SENSOR_PORT = 15;
 int GPS_RIGHT_SENSOR_PORT = 16;
+int DISTANCE_RIGHT_SENSOR_PORT = 3;
+int DISTANCE_LEFT_SENSOR_PORT = 4;
 
 int TRACKING_WHEEL_VERTICAL_SENSOR_PORT = 2;
 int TRACKING_WHEEL_HORIZONTAL_SENSOR_PORT = 5;
@@ -88,6 +90,9 @@ pros::Rotation vert_encoder(TRACKING_WHEEL_VERTICAL_SENSOR_PORT);
 pros::Rotation hort_encoder(TRACKING_WHEEL_HORIZONTAL_SENSOR_PORT);
 pros::Distance cata_distance_sensor(CATA_DISTANCE_SENSOR_PORT);
 pros::Optical optical_sensor(OPTICAL_SENSOR_PORT);
+
+pros::Distance DistanceL(DISTANCE_LEFT_SENSOR_PORT);
+pros::Distance DistanceR(DISTANCE_RIGHT_SENSOR_PORT);
 
 // ------------------------------------------------------------------------------------------------------
 // Pneumatics

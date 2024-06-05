@@ -155,7 +155,7 @@ void auton() {
     pros::delay(500);
     wingBR.set_value(true);
     // pros::delay(500);
-    chassis.moveToPose(72, -12, -90, 1200, {.forwards=false, .maxSpeed = 70}, false);
+    chassis.moveToPose(72, -12, -90, 1200, {.forwards=false, .maxSpeed = 80}, false);
     chassis.setPose(-7.75, chassis.getPose().y, chassis.getPose().theta);
     pros::delay(500);
     chassis.moveToPose(-10.75, chassis.getPose().y, -90, 1000, {.forwards=false}, false); // move back 3 inches
@@ -229,7 +229,19 @@ void auton() {
         }
     }
 
-    setDrive(1, 1);
+    // setDrive(1, 1);
+    //one minute 15
+    pros::delay(800);
+    chassis.setPose(7,62,-90);
+    chassis.moveToPose(33, 64, -90, 2000, {.forwards=false, .maxSpeed=80}, false);
+    chassis.turnToHeading(-180, 2000);
+    setDrive(-300,-300);
+    pros::delay(800);
+    setDrive(0, 0);
+    void wallReset();
+
+
+
     // chassis.moveToPose(-8.5, -20, 0, 5000, {}, false);
     // chassis.turnToHeading(55, 500, {},false);
     // chassis.moveToPose(-48,-58,41, 5000, {.forwards=false});

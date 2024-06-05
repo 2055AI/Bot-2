@@ -36,6 +36,8 @@ extern pros::ADIDigitalOut hang;
 extern pros::ADIDigitalOut wingF;
 extern pros::ADIDigitalOut wingBR;
 extern pros::ADIDigitalOut wingBL;
+extern pros::Distance DistanceL;
+extern pros::Distance DistanceR;
 
 extern pros::Controller controller;
 

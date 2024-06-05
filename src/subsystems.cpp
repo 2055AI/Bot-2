@@ -98,6 +98,7 @@ void bowl_skills(int num, int delay) {
 
 void bowl_isolation(int num, int delay) {
     wingBL.set_value(true);
+    pros::delay(500);
     for (int i = 0; i < (num-1); i++) {
         // chassis.turnToHeading(-90, 500, {.minSpeed=90}, false);
         chassis.turnToHeading(-90, 500, {.minSpeed=85}, false);
