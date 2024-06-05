@@ -145,18 +145,17 @@ void endgame() {
 }
 
 void auton() {
-
     shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 
     chassis.setPose(-32, -55, 0);
-    chassis.moveToPose(-35, -12, 0, 5000, {}, false);
+    chassis.moveToPose(-35, -12, 0, 3000, {}, false);
     pros::delay(500);
     chassis.turnToHeading(-90, 500, {}, false);
     pros::delay(500);
     wingBR.set_value(true);
-    pros::delay(500);
-    chassis.moveToPose(72, -12, -90, 1000, {.forwards=false, .maxSpeed = 105}, false);
+    // pros::delay(500);
+    chassis.moveToPose(72, -12, -90, 1200, {.forwards=false, .maxSpeed = 70}, false);
     chassis.setPose(-7.75, chassis.getPose().y, chassis.getPose().theta);
     pros::delay(500);
     chassis.moveToPose(-10.75, chassis.getPose().y, -90, 1000, {.forwards=false}, false); // move back 3 inches
@@ -164,8 +163,8 @@ void auton() {
     pros::delay(500);
     chassis.turnToHeading(-20, 1000, {}, false);
     pros::delay(500);
-    setDrive(-250, -250);
-    pros::delay(2000);
+    setDrive(-400, -400);
+    pros::delay(1000);
     setDrive(0, 0);
     chassis.setPose(-8.5, -40, 0);
     
@@ -183,9 +182,9 @@ void auton() {
     pros::delay(500);
     chassis.turnToHeading(50, 1000, {}, false);
     pros::delay(500);
-    chassis.moveToPose(-62, -54, 45, 3000, {.forwards=false}, false);
+    chassis.moveToPose(-60, -54, 45, 2000, {.forwards=false}, false);
     pros::delay(500);
-    chassis.moveToPose(chassis.getPose().x + 2, chassis.getPose().y + 2, chassis.getPose().theta, 1000, {.maxSpeed=60}, false);
+    chassis.moveToPose(chassis.getPose().x + 1, chassis.getPose().y + 1, chassis.getPose().theta, 1000, {.maxSpeed=60}, false);
     pros::delay(500);
     chassis.turnToHeading(-35, 1000, {}, false);
     pros::delay(500);
@@ -198,10 +197,11 @@ void auton() {
 
     // BOWL & SIDE RAM
     chassis.turnToHeading(-50, 900, {}, false);
-    wingBL.set_value(true);
+    // wingBL.set_value(true);
+    wingBR.set_value(true);
     pros::delay(150);
-    chassis.moveToPose(34, -64, -90, 3000, {.forwards = false, .maxSpeed = 98}, false);
-    chassis.moveToPose(66, 0, 180, 2500, {.forwards = false, .maxSpeed = 127});
+    chassis.moveToPose(45, -70, -90, 3000, {.forwards = false, .maxSpeed = 98}, false);
+    chassis.moveToPose(70, -30, 180, 2000, {.forwards = false, .maxSpeed = 400});
     chassis.waitUntil(30);
     wingBL.set_value(false);
     chassis.waitUntilDone();
@@ -219,11 +219,17 @@ void auton() {
     chassis.setPose(63, -29, 180);
     chassis.turnToHeading(0,500,{},false);
     pros::delay(1000);
-    chassis.moveToPose(0, -56, 90, 2000, {.forwards=false}, false);
+    chassis.moveToPose(0, -60, 90, 2000, {.forwards=false}, false);
     // chassis.moveToPose(5, -58, -90, 5000, {}, false);
+    setDrive(-150, -150);
+    while(true){
+        if(optical_sensor.get_proximity() > 100){
+            pros::delay(100);
+            break;
+        }
+    }
 
-
-
+    setDrive(1, 1);
     // chassis.moveToPose(-8.5, -20, 0, 5000, {}, false);
     // chassis.turnToHeading(55, 500, {},false);
     // chassis.moveToPose(-48,-58,41, 5000, {.forwards=false});

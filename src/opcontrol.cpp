@@ -36,10 +36,11 @@ void my_opcontrol() {
 
         lemlib::Pose pose = chassis.getPose(); // get the current position of the robot
 
+        pros::lcd::set_text(4, "OPTICAL: " + std::to_string(optical_sensor.get_proximity()));
         pros::lcd::set_text(5, "X: "  +  std::to_string(pose.x)); // print the x position
         pros::lcd::set_text(6, "Y: " + std::to_string(pose.y)); // print the y position
         pros::lcd::set_text(7, "Angle: " + std::to_string(pose.theta)); // print the heading
-        
+
 
         pros::delay(50);
 
