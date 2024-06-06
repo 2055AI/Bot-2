@@ -49,6 +49,7 @@ void wallReset(std::string wall, std::string sensor) {
     }
     else if (wall == "left" && sensor == "left") {
         double inches = DistanceL.get() * 0.0393701;
+        pros::lcd::set_text(2, "Inches: " + std::to_string(inches));
         double distance = inches * abs(cos((Pi/2)-(chassis.getPose().theta*Pi/180)));
         chassis.setPose(-72 + (distance + offset * abs(cos((chassis.getPose().theta*Pi/180)))), chassis.getPose().y, chassis.getPose().theta);
     }

@@ -144,7 +144,7 @@ void endgame() {
     setDrive(0, 0);
 }
 
-void auton() {
+void isolation() {
     shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 
@@ -182,9 +182,9 @@ void auton() {
     pros::delay(500);
     chassis.turnToHeading(50, 1000, {}, false);
     pros::delay(500);
-    chassis.moveToPose(-60, -54, 45, 2000, {.forwards=false}, false);
+    chassis.moveToPose(-62, -54, 45, 2000, {.forwards=false}, false);
     pros::delay(500);
-    chassis.moveToPose(chassis.getPose().x + 1, chassis.getPose().y + 1, chassis.getPose().theta, 1000, {.maxSpeed=60}, false);
+    chassis.moveToPose(chassis.getPose().x + 2, chassis.getPose().y + 2, chassis.getPose().theta, 1000, {.maxSpeed=60}, false);
     pros::delay(500);
     chassis.turnToHeading(-35, 1000, {}, false);
     pros::delay(500);
@@ -229,16 +229,40 @@ void auton() {
         }
     }
 
-    // setDrive(1, 1);
-    //one minute 15
-    pros::delay(800);
-    chassis.setPose(7,62,-90);
-    chassis.moveToPose(33, 64, -90, 2000, {.forwards=false, .maxSpeed=80}, false);
-    chassis.turnToHeading(-180, 2000);
-    setDrive(-300,-300);
-    pros::delay(800);
+
     setDrive(0, 0);
-    void wallReset();
+}
+
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// 1:15 AUTON
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ void interaction() {   
+    // chassis.setPose(0, 65, 180);
+    // wallReset("left", "left"); 
+    // lemlib::Pose pose = chassis.getPose(); // get the current position of the robot
+    // pros::lcd::set_text(5, "X: "  +  std::to_string(pose.x)); // print the x position
+    // pros::lcd::set_text(6, "Y: " + std::to_string(pose.y)); // print the y position
+    // pros::lcd::set_text(7, "Angle: " + std::to_string(pose.theta)); // print the heading
+    // shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+	// shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST); 
+
+    pros::delay(800);
+    chassis.setPose(-13, -65, 90);
+    chassis.moveToPose(-33, -60.5, 90, 2000, {.forwards=false, .maxSpeed=80}, false); // y = 64
+    chassis.turnToHeading(0, 2000, {}, false);
+    setDrive(-150, -150);
+    pros::delay(500);
+    setDrive(-20, -20);
+    pros::delay(500);
+    wallReset("left", "left");
+    lemlib::Pose pose = chassis.getPose(); // get the current position of the robot
+    pros::lcd::set_text(5, "X: "  +  std::to_string(pose.x)); // print the x position
+    pros::lcd::set_text(6, "Y: " + std::to_string(pose.y)); // print the y position
+    pros::lcd::set_text(7, "Angle: " + std::to_string(pose.theta)); // print the heading
+    pros::delay(1000);
+    setDrive(0, 0);
+
+
 
 
 
@@ -253,4 +277,5 @@ void auton() {
     // chassis.moveToPose(-38, -55, -90, 2000, {.forwards=false}, true);
     // chassis.moveToPose(32, -55, -90, 4000, {.forwards=false}, true);
     // pros::delay(1500);
-}
+ }
+
