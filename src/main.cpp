@@ -67,7 +67,8 @@ void competition_initialize() {}
  * from where it left off.
  */
 void autonomous() {
-	// test_auton();
+	
+	// test_auton(); call this for matches, it has iso and inter
 	// optical_test(); // SLOT 2
 	// pid_turn_test();
 	// isolation(); // SLOT 1
