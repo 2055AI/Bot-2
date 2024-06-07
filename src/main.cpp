@@ -35,6 +35,8 @@ void initialize() {
 
 	shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+
+	//autonomous();
 }
 
 /**
@@ -68,12 +70,13 @@ void competition_initialize() {}
  */
 void autonomous() {
 	
-	// test_auton(); call this for matches, it has iso and inter
+	//testInteraction();
+	//test_auton(); // call this for matches, it has iso and inter
 	// optical_test(); // SLOT 2
 	// pid_turn_test();
 	// isolation(); // SLOT 1
-	interaction(); // SLOT 2
-	// skills(); // SLOT 3
+	//interaction(); // SLOT 2
+	skills(); // SLOT 3
 	// test_auton(); // SLOT 3
 }
 

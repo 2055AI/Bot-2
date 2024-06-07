@@ -142,7 +142,7 @@ void endgame() {
 
     setDrive(400, 400);
     pros::delay(750);
-    hang.set_value(true);
+    hang.set_value(true); //UNCOMMENT FOR SKILLS
     cataShoot();    
     pros::delay(200);
     setIntake(-100);
@@ -258,7 +258,7 @@ void isolation() {
     if (abs(chassis.getPose().theta)-90 < 15) {
         chassis.setPose(-13, -64, 90);
         }
-    chassis.moveToPose(-33, -63, 90, 2000, {.forwards=false, .maxSpeed=80}, false); // y = 64
+    chassis.moveToPose(-36, -63, 90, 2000, {.forwards=false, .maxSpeed=80}, false); // y = 64
     chassis.turnToHeading(0, 2000, {}, false);
     setDrive(-150, -150);
     pros::delay(500);
@@ -313,7 +313,7 @@ void isolation() {
     chassis.turnToHeading(195, 500, {}, false);
     // chassis.moveToPose(64, chassis.getPose().y + 35, 180, 1200, {.forwards = false, .minSpeed = 127}, false);
     setDrive(-600, -600);
-    pros::delay(1000);
+    pros::delay(900);
     setDrive(0, 0);
     wingBL.set_value(false);
     wingBR.set_value(false);
@@ -330,6 +330,7 @@ void isolation() {
     while(true){
         if(optical_sensor.get_proximity() > 100){
             chassis.setPose(8, chassis.getPose().y, chassis.getPose().theta);
+            pros::delay(200);
             break;
         }
     }
@@ -337,14 +338,14 @@ void isolation() {
     chassis.turnToHeading(0, 500, {}, false);
 
     // wall reset
-    setDrive(-150, -150);
+    setDrive(-250, -250);
     pros::delay(500);
     setDrive(-50, -50);
-    pros::delay(100);
+    pros::delay(150);
     distance = DistanceL.get() * 0.0393701;
     chassis.setPose(-72 + (distance-3), -65, 0);
     
-    chassis.moveToPose(-36, 32, 0, 2300, {}, false);
+    chassis.moveToPose(-36, 32, 0, 2100, {}, false);
     chassis.turnToHeading(270, 600, {}, false);
     setDrive(-600, -600);
     pros::delay(500);
@@ -365,24 +366,67 @@ void isolation() {
     // wallReset("right", "right");
 
     // Move to Other Matchload Bar
-    potential_reset(chassis.getPose().x, -40, chassis.getPose().theta);
-    pros::delay(300);
 
-    chassis.moveToPose(-46, -46, 220, 2100, {}, false);
-    pros::delay(500);
+    potential_reset(chassis.getPose().x, -40, chassis.getPose().theta);
+    pros::delay(200);
+    
+    setDrive(400,400);
+    pros::delay(200);
+    chassis.turnToHeading(265, 1000, {}, false);
+    chassis.moveToPose(-46, -48, 220, 2000, {}, false);
+    setDrive(400,400);
+    pros::delay(200);
+    setDrive(0,0);
+    pros::delay(100);
     chassis.turnToHeading(310, 1000, {}, false);
     pros::delay(500);
-    wingBR.set_value(true);
+    //wingBR.set_value(true);
     chassis.moveToPose(30, -66, -90, 2500, {.forwards = false, .minSpeed = 100}, false);
+    wingBR.set_value(true);
     chassis.moveToPose(64, -10, 180, 2500, {.forwards = false, .minSpeed = 127}, false);
     
+    chassis.setPose(63, -29, 180);
+    wingBR.set_value(false);
+    wingBL.set_value(false);
+    setDrive(400,300);
+    pros::delay(300);
+    chassis.turnToHeading(40,750,{},false);
+    pros::delay(300);
 
+    chassis.moveToPose(0, -59, 90, 2000, {.forwards=false}, false);
 
-    // chassis.moveToPose(64, chassis.getPose().y - 15, 180, 1000, {.minSpeed = 80}, false);
-    // chassis.moveToPose(64, chassis.getPose().y + 40, 180, 1000, {.forwards = false, .minSpeed = 127}, false);
+    //move to front of matchload bar to push balls over barrier
+    setDrive(-250, -260);
+    while(true){
+        if(optical_sensor.get_proximity() > 100){
+            chassis.setPose(8, chassis.getPose().y, chassis.getPose().theta);
+            pros::delay(200);
+            break;
+        }
+    }
+    shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
     
+    //endgame
+    setIntake(127);
+    setCata(-127);
+    pros::delay(200);
+    setDrive(0,0);
+    pros::delay(400);
+    setIntake(0);
+    setCata(0);
 
-
+    setDrive(400, 415);
+    pros::delay(450);
+    setDrive(400,400);
+    pros::delay(200);
+    hang.set_value(true);
+    cataShoot();    
+    pros::delay(200);
+    setIntake(-100);
+    pros::delay(150);
+    setIntake(0);
+    setDrive(0, 0);
 
     // chassis.moveToPose(-8.5, -20, 0, 5000, {}, false);
     // chassis.turnToHeading(55, 500, {},false);
@@ -395,5 +439,71 @@ void isolation() {
     // chassis.moveToPose(-38, -55, -90, 2000, {.forwards=false}, true);
     // chassis.moveToPose(32, -55, -90, 4000, {.forwards=false}, true);
     // pros::delay(1500);
+ }
+
+ void testInteraction() {
+    chassis.setPose(-10, -40, 0);
+
+    potential_reset(chassis.getPose().x, -40, chassis.getPose().theta);
+    pros::delay(200);
+    
+    setDrive(400,400);
+    pros::delay(200);
+    chassis.turnToHeading(265, 1000, {}, false);
+    chassis.moveToPose(-46, -48, 220, 2000, {}, false);
+    setDrive(400,400);
+    pros::delay(200);
+    setDrive(0,0);
+    pros::delay(100);
+    chassis.turnToHeading(310, 1000, {}, false);
+    pros::delay(500);
+    //wingBR.set_value(true);
+    chassis.moveToPose(30, -66, -90, 2500, {.forwards = false, .minSpeed = 100}, false);
+    wingBR.set_value(true);
+    chassis.moveToPose(64, -10, 180, 2500, {.forwards = false, .minSpeed = 127}, false);
+    
+    chassis.setPose(63, -29, 180);
+    wingBR.set_value(false);
+    wingBL.set_value(false);
+    setDrive(400,300);
+    pros::delay(300);
+    chassis.turnToHeading(40,750,{},false);
+    pros::delay(300);
+
+    chassis.moveToPose(0, -59, 90, 2000, {.forwards=false}, false);
+
+    //move to front of matchload bar to push balls over barrier
+    setDrive(-250, -260);
+    while(true){
+        if(optical_sensor.get_proximity() > 100){
+            chassis.setPose(8, chassis.getPose().y, chassis.getPose().theta);
+            pros::delay(200);
+            break;
+        }
+    }
+    shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
+    
+    //endgame
+    setIntake(127);
+    setCata(-127);
+    pros::delay(200);
+    setDrive(0,0);
+    pros::delay(400);
+    setIntake(0);
+    setCata(0);
+
+    setDrive(400, 415);
+    pros::delay(450);
+    setDrive(400,400);
+    pros::delay(200);
+    hang.set_value(true);
+    cataShoot();    
+    pros::delay(200);
+    setIntake(-100);
+    pros::delay(150);
+    setIntake(0);
+    setDrive(0, 0);
+
  }
 

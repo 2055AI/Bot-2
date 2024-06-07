@@ -8,3 +8,4 @@ void potential_reset(int x, int y, int target_angle);
 void endgame();
 void isolation();
 void interaction();
+void testInteraction();

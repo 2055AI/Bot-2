@@ -50,29 +50,34 @@ void skills() {
     // wallReset("right", "right");
 
     // Move to Other Matchload Bar
-    potential_reset(chassis.getPose().x, -40, chassis.getPose().theta);
-    pros::delay(300);
-    chassis.moveToPose(chassis.getPose().x, -30, 0, 1000, {}, false);
-    pros::delay(150);
-    chassis.turnToHeading(240, 900, {}, false);
-    chassis.moveToPose(-42, -48, 235, 2300, {}, false); //-56, -60
-    // pros::delay(150);
-    // chassis.moveToPose(-48, -50, 230, 1750, {.minSpeed = 100}, false); //-60, -56
-    wingBR.set_value(true);
-    pros::delay(150);
-    chassis.turnToHeading(50, 1100, {.direction = lemlib::AngularDirection::CCW_COUNTERCLOCKWISE}, false);
-    wingBR.set_value(false);
-    pros::delay(150);
-    chassis.turnToHeading(235, 1100, {}, false);
-    chassis.moveToPose(-50, -54, 235, 1000, {}, false);
-
-    // Shoot 12 Tri-balls OR Bowl 8
-    bowl_matchload(12);
-    pros::delay(150);
-
-    // Bowl / Side Ram
+    // chassis.setPose(-10, -40, 0); //HARD CODE
+    chassis.setPose(chassis.getPose().x, -40, chassis.getPose().theta);
     shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
 	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_COAST);
+    pros::delay(300);
+    chassis.moveToPose(chassis.getPose().x, -28, 0, 1000, {}, false);
+    pros::delay(150);
+    chassis.turnToHeading(60, 900, {}, false);
+    //////chassis.moveToPose(-42, -48, 235, 2300, {}, false); //-56, -60
+    // pros::delay(150);
+    // chassis.moveToPose(-48, -50, 230, 1750, {.minSpeed = 100}, false); //-60, -56
+    //////wingBR.set_value(true);
+    //////pros::delay(150);
+    //////chassis.turnToHeading(50, 1100, {.direction = lemlib::AngularDirection::CCW_COUNTERCLOCKWISE}, false);
+    //////wingBR.set_value(false);
+    //////pros::delay(150);
+    // chassis.turnToHeading(235, 1100, {}, false);
+    chassis.moveToPose(-54, -58, 50, 2750, {.forwards = false}, false); //-50, -54
+
+    chassis.turnToHeading(-45, 1200, {}, false);
+
+    bowl_isolation(12, 750); 
+    pros::delay(500);
+    wingBL.set_value(false);
+
+    // Shoot 12 Tri-balls OR Bowl 8
+    // bowl_matchload(12);
+    // pros::delay(150);
 
     chassis.turnToHeading(-50, 900, {}, false);
     wingBR.set_value(true);
@@ -94,6 +99,6 @@ void skills() {
 
     shooter1.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
 	shooter2.set_brake_mode(pros::E_MOTOR_BRAKE_HOLD);
-    // endgame();
+    endgame();
     
 }
